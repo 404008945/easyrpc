@@ -106,8 +106,8 @@ public class NettyClient {
         if (!remoteMap.containsKey(remote)||!remoteMap.get(remote).getChannel().isOpen()||!remoteMap.get(remote).getChannel().isActive())//不包含就加入
         {
             future = b.connect(remote.getIpAddress(), remote.getPort()).sync();
-
-            log.info("建立连接:{}",remoteMap.containsKey(remote));
+            log.info("是否为第一次连接:{}",!remoteMap.containsKey(remote));
+            log.info("建立连接成功");
             remoteMap.put(remote,new LiveChannelCache(future.channel()));
         }
 
