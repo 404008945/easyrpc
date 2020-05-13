@@ -7,6 +7,7 @@ import com.lxs.easyrpc.proxy.Result;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -54,7 +55,13 @@ public class ProdInvoke<T>  implements Invoke<T>, Serializable {
                 throw  new RpcException(method+"方法不存在");
             }
 
-        }catch (Exception e){
+        }catch (InvocationTargetException e){
+            result.setException(new RpcException("服务调用失败:"+e.getTargetException().getMessage()));//只抛rpcExceprion
+            e.printStackTrace();
+            log.error("调用异常:{}",e);
+            return result;
+        }
+        catch (Exception e){
             result.setException(new RpcException("服务调用失败:"+e.getMessage()));//只抛rpcExceprion
             e.printStackTrace();
             log.error("调用异常:{}",e);
