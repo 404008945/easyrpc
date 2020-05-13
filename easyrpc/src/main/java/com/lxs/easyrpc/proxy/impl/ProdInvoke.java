@@ -38,8 +38,7 @@ public class ProdInvoke<T>  implements Invoke<T>, Serializable {
     }
 
     @Override
-    public Result
-    invoke(Method method ,Object ... args) throws RpcException {
+    public Result invoke(Method method ,Object ... args) throws RpcException {
         Result result = new InvokeResult();
         try {
     //获取执行方法，以及入参，第0个为方法路径，后面的为方法参数，如找不到此函数，抛出异常
@@ -56,9 +55,10 @@ public class ProdInvoke<T>  implements Invoke<T>, Serializable {
             }
 
         }catch (Exception e){
-            result.setException(new RpcException(e.getCause()));//只抛rpcExceprion
+            result.setException(new RpcException("服务调用失败:"+e.getMessage()));//只抛rpcExceprion
             e.printStackTrace();
-            log.error("方法调用失败:{}",e);
+            log.error("调用异常:{}",e);
+            return result;
         }
 
         return result;

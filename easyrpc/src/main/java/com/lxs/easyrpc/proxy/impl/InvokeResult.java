@@ -33,7 +33,7 @@ public class InvokeResult implements Result, Serializable {
 
     @Override
     public void setException(Exception e) {
-        this.exception = exception;
+        this.exception = e;
         hasException = true;
     }
 }
