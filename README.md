@@ -71,7 +71,7 @@ easyrpc.registerIp=127.0.0.1
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020051318135343.png)
 如需引用服务，需要在字段上加上 @RpcConsumer(timeout = 10,retryTime = 3)，其中timeout为请求超时时间（不配置默认为5），retrytime为重试次数（默认为3）。此注解标识含义是，若10秒无返回则重试，重试3次均无返回则认为接口调用超时。
 ## 生产者消费者的使用demo
-[demo地址](https://github.com/404008945/easyrpc)
+[demo地址](https://github.com/404008945/rpctest)
 启动此demo需要按照前面的教程easyRpc打包到本地仓库，并且启动注册中心。
 注意：demo中配置的注册中心ip和端口号需要与注册中心一致。
 本demo中有两个provider和consumer，两个provider注册到一个注册中心集群，分别启动这三个模块就可以调用了
